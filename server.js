@@ -1,12 +1,24 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const { logger } = require('./middleware/logger')
+const errorHandler = require('./middleware/errorHandler')
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
+const corsOptions = require('./config/corsOptions')
 const PORT = process.env.PORT || 3500
+
+app.use(logger)
+
+app.use(cors(corsOptions))//makes api available to the intended public
 
 app.use(express.json())
 
+app.use(cookieParser())
+
 app.use('/', express.static(path.join(__dirname, 'public')))
 //where to look for static paths
+//relative to where your server.js is
 
 app.use('/', require('./routes/root'))
 
@@ -22,5 +34,7 @@ app.all('*', (req, res ) => {
     res.type('txt').send('404 Not Found')
   }
 })
+
+app.use(errorHandler)
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

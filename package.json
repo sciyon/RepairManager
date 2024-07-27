@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/sciyon/RepairManager#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "date-fns": "^3.6.0",
     "express": "^4.19.2",
     "uuid": "^10.0.0"

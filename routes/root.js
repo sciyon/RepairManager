@@ -3,6 +3,7 @@ const router = express.Router()
 const path = require('path')
 
 router.get('^/$|/index(.html)?', (req, res) => {
+  //start with /, end with index page
   res.sendFile(path.join(__dirname, '..', 'views', 'index.html'))
 })
 
