@@ -8,6 +8,10 @@ const noteSchema = new mongoose.Schema(
       required: true,
       ref: 'User'
     },
+    customer:{
+      type:String,
+      required: true
+    },
     title: {
       type: String,
       required: true
